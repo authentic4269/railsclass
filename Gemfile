@@ -6,7 +6,10 @@ gem 'rails', '3.2.10'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'nokogiri'
 
-gem 'sqlite3'
+group :production do
+  gem 'pg'
+end
+
 group :development, :test do
 	gem 'sqlite3'
 	gem 'rspec-rails'
