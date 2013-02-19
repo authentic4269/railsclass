@@ -1,15 +1,20 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>User:</b>
-  <%= @micro_post.user_id %>
+  <b>Name:</b>
+  <%= @user.name %>
 </p>
 
 <p>
-  <b>Content:</b>
-  <%= @micro_post.content %>
+  <b>Email:</b>
+  <%= @user.email %>
 </p>
 
+<p>
+  <%= pluralize(@user.micro_posts.length, "MicroPost") %>
+</p>
 
-<%= link_to 'Edit', edit_micro_post_path(@micro_post) %> |
-<%= link_to 'Back', micro_posts_path %>
+<%= render @user.micro_posts %>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
