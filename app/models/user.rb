@@ -14,10 +14,15 @@ class User < ActiveRecord::Base
   
   has_many :micro_posts
 
+def has_password?(raw_password)
+  hashed_password == encrypt(raw_password)
+end
+
   before_save :encrypt_password
                 
   def self.authenticate(pass, mail)
-    User.where("password = ? AND email = ?", encrypt(pass), mail)
+    user = User.find_by_email(email)
+    user && user.has_password?(plain_text_password) ? user : nil
   end
 
   def encrypt_password
